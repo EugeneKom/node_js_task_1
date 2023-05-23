@@ -1,5 +1,4 @@
-const nodemon = require("nodemon");
-const fs = require("fs").promises;
+const { Command } = require("commander");
 
 const {
   getContactById,
@@ -8,7 +7,6 @@ const {
   addContact,
 } = require("./contacts");
 
-const { Command } = require("commander");
 const program = new Command();
 program
   .option("-a, --action <type>", "choose action")
@@ -21,7 +19,6 @@ program.parse(process.argv);
 
 const argv = program.opts();
 
-// TODO: рефакторить
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
